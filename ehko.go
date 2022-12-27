@@ -6,12 +6,12 @@ import (
 	"strconv"
 
 	"github.com/labstack/echo/v4"
-	v1 "github.com/prometheus/alertmanager/api/v1"
+	"github.com/prometheus/alertmanager/types"
 )
 
 // Alerts is an endpoint that receive alerts from e.g. Alertmanager (via a POST)
 func Alerts(c echo.Context) error {
-	var alert *v1.Alert
+	var alert types.Alert
 	// Decode the alert into a slice of *v1.Alerts
 	err := json.NewDecoder(c.Request().Body).Decode(&alert)
 	if err != nil {
