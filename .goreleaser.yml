@@ -12,3 +12,7 @@ builds:
       - linux
     goarch:
       - amd64
+
+dockers:
+  - image_templates:
+      - "docker.io/mikejoh/ehko"
