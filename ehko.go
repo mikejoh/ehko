@@ -11,17 +11,17 @@ import (
 
 // Alerts is an endpoint that receive alerts from e.g. Alertmanager (via a POST)
 func Alerts(c echo.Context) error {
-	var alerts []*v1.Alert
+	var alert *v1.Alert
 	// Decode the alert into a slice of *v1.Alerts
-	err := json.NewDecoder(c.Request().Body).Decode(&alerts)
+	err := json.NewDecoder(c.Request().Body).Decode(&alert)
 	if err != nil {
 		return err
 	}
 	// Log the slice of *v1.Alerts
-	c.Logger().Infof("%+v\n", alerts)
+	c.Logger().Infof("%+v\n", alert)
 
 	// Marshal it back to JSON to return it to the client
-	b, err := json.Marshal(alerts)
+	b, err := json.Marshal(alert)
 	if err != nil {
 		return err
 	}
