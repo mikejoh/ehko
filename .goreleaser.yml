@@ -1,0 +1,14 @@
+before:
+  hooks:
+    - go mod tidy
+
+builds:
+  - id: "ehko"
+    main: ./cmd/ehko
+    binary: ehko
+    env:
+      - CGO_ENABLED=0
+    goos:
+      - linux
+    goarch:
+      - amd64
