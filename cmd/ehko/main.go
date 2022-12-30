@@ -16,9 +16,10 @@ func main() {
 	e.Use(middleware.BodyDump(func(c echo.Context, reqBody, resBody []byte) {
 	}))
 	e.GET("/", func(c echo.Context) error {
-		return c.String(http.StatusOK, "<pre><h3>ehko</h3></pre>")
+		return c.String(http.StatusOK, "ehko!")
 	})
 	e.POST("/alerts", ehko.Alerts)
+	e.POST("/raw", ehko.Raw)
 	e.GET("/responder/:code", ehko.Responder)
 
 	e.Logger.Fatal(e.Start(":5001"))
