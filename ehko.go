@@ -10,7 +10,7 @@ import (
 	"github.com/prometheus/alertmanager/template"
 )
 
-// Alerts is an endpoint that receive alerts from e.g. Alertmanager (via a POST)
+// Alerts is an endpoint that receive alerts from Alertmanager
 func Alerts(c echo.Context) error {
 	var alert template.Data
 	// Decode the alert into a slice of *v1.Alerts
@@ -25,8 +25,8 @@ func Alerts(c echo.Context) error {
 	return nil
 }
 
-// Raw logs whatever POSTed to this endpoint
-func Raw(c echo.Context) error {
+// Log logs whatever POSTed to the endpoint that uses this handler
+func Log(c echo.Context) error {
 	b, err := ioutil.ReadAll(c.Request().Body)
 	if err != nil {
 		log.Fatal(err)

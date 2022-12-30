@@ -19,7 +19,7 @@ func main() {
 		return c.String(http.StatusOK, "ehko!")
 	})
 	e.POST("/alerts", ehko.Alerts)
-	e.POST("/raw", ehko.Raw)
+	e.POST("/log", ehko.Log)
 	e.GET("/responder/:code", ehko.Responder)
 
 	e.Logger.Fatal(e.Start(":5001"))
