@@ -1,0 +1,27 @@
+version: 2
+project_name: ehko
+release:
+  github:
+    owner: mikejoh
+    name: ehko
+  name_template: 'v{{ .Tag }}'
+before:
+  hooks:
+    - go mod tidy
+builds:
+  - id: ehko
+    main: ./cmd/ehko
+    binary: ehko
+    ldflags:
+      - -s -w
+    env:
+      - CGO_ENABLED=0
+    goos:
+      - linux
+    goarch:
+      - amd64
+dist: ./build
+dockers:
+  - image_templates:
+      - "docker.io/mikejoh/ehko:{{ .Tag }}"
+      - "docker.io/mikejoh/ehko:latest"
